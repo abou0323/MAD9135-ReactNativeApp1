@@ -1,14 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  Button,
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-
+import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
+import RecipeButton from "../components/RecipeButton";
+import IngredientsButton from "../components/IngredientsButton";
 
 export default function HomePage({ navigation }) {
   const [buttonPressed, setButtonPressed] = useState(false);
@@ -25,21 +19,9 @@ export default function HomePage({ navigation }) {
         <Text style={styles.title}>
           Try the best gingerbread cookie recipe!!
         </Text>
-
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("Recipe")}
-        >
-          <Text style={styles.buttonText}>See Recipe</Text>
-        </Pressable>
-
-        <Pressable
-          style={[styles.button, { marginBottom: 50 }]}
-          onPress={() => navigation.navigate("Ingredients")}
-        >
-          <Text style={styles.buttonText}>See Ingredients</Text>
-        </Pressable>
-
+        <RecipeButton navigation={navigation} theme="large" />
+        <IngredientsButton navigation={navigation} theme="large" />
+        <View style={{ marginVertical: 20 }} />
         <Button
           title="Did you like the recipe? Click here!"
           onPress={handlePressRecipeFeedback}
@@ -67,21 +49,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     paddingBottom: 20,
-  },
-  button: {
-    width: 320,
-    height: 50,
-    marginHorizontal: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 3,
-    borderRadius: 18,
-    backgroundColor: "#D21F3C",
-    marginBottom: 20,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
   },
   recipeFeedback: {
     fontSize: 16,

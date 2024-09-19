@@ -5,8 +5,9 @@ import {
   View,
   Image,
   ScrollView,
-  Pressable,
 } from "react-native";
+import HomeButton from "../components/HomeButton";
+import IngredientsButton from "../components/IngredientsButton";
 
 export default function RecipePage({ navigation }) {
   return (
@@ -14,19 +15,8 @@ export default function RecipePage({ navigation }) {
       <ScrollView>
         <View style={{ marginHorizontal: 20 }}>
           <View style={styles.buttonContainer}>
-            <Pressable
-              style={styles.button}
-              onPress={() => navigation.navigate("Home")}
-            >
-              <Text style={styles.buttonText}>Back to Home</Text>
-            </Pressable>
-
-            <Pressable
-              style={[styles.button]}
-              onPress={() => navigation.navigate("Ingredients")}
-            >
-              <Text style={styles.buttonText}>See Ingredients</Text>
-            </Pressable>
+            <HomeButton navigation={navigation} />
+            <IngredientsButton navigation={navigation} />
           </View>
 
           <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -40,6 +30,7 @@ export default function RecipePage({ navigation }) {
               }}
             />
           </View>
+
           <Text style={{ fontWeight: "bold", marginTop: 15, fontSize: 18 }}>
             Instructions
           </Text>

@@ -6,48 +6,22 @@ import {
   View,
   Pressable,
 } from "react-native";
+import HomeButton from "../components/HomeButton";
+import RecipeButton from "../components/RecipeButton";
 
 export default function ListPage({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.buttonContainer}>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("Home")}
-        >
-          <Text style={styles.buttonText}>Back to Home</Text>
-        </Pressable>
-
-        <Pressable
-          style={[styles.button]}
-          onPress={() => navigation.navigate("Recipe")}
-        >
-          <Text style={styles.buttonText}>See Recipe</Text>
-        </Pressable>
+        <HomeButton navigation={navigation} />
+        <RecipeButton navigation={navigation} />
       </View>
-      <Text
-        style={{
-          fontSize: 18,
-          margin: 10,
-          textAlign: "center",
-        }}
-      >
-        Click an ingredient for a special tip
-      </Text>
+      <Text style={styles.listInfo}>Click an ingredient for a special tip</Text>
       <FlatList
         data={data}
         renderItem={({ item }) => (
           <Pressable onPress={() => alert(item.tip)}>
-            <Text
-              style={{
-                padding: 16,
-                fontSize: 16,
-                backgroundColor: "#ffcbd1",
-                margin: 5,
-              }}
-            >
-              {item.nameFullAndMeasurement}
-            </Text>
+            <Text style={styles.listItem}>{item.nameFullAndMeasurement}</Text>
           </Pressable>
         )}
         keyExtractor={(item) => item.id}
@@ -181,5 +155,16 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "center",
+  },
+  listInfo: {
+    fontSize: 18,
+    margin: 10,
+    textAlign: "center",
+  },
+  listItem: {
+    padding: 16,
+    fontSize: 16,
+    backgroundColor: "#ffcbd1",
+    margin: 5,
   },
 });
