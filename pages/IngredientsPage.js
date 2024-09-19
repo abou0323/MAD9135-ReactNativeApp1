@@ -1,6 +1,4 @@
-import { StatusBar } from "expo-status-bar";
 import {
-  Button,
   FlatList,
   SafeAreaView,
   StyleSheet,
@@ -12,15 +10,30 @@ import {
 export default function ListPage({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-      <Button
-        title="Back to Home"
-        onPress={() => navigation.navigate("Home")}
-      ></Button>
-      <Button
-        title="See Recipe"
-        onPress={() => navigation.navigate("Recipe")}
-      ></Button>
-      <Text>Click an ingredient for a special tip</Text>
+      <View style={styles.buttonContainer}>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate("Home")}
+        >
+          <Text style={styles.buttonText}>Back to Home</Text>
+        </Pressable>
+
+        <Pressable
+          style={[styles.button]}
+          onPress={() => navigation.navigate("Recipe")}
+        >
+          <Text style={styles.buttonText}>See Recipe</Text>
+        </Pressable>
+      </View>
+      <Text
+        style={{
+          fontSize: 18,
+          margin: 10,
+          textAlign: "center",
+        }}
+      >
+        Click an ingredient for a special tip
+      </Text>
       <FlatList
         data={data}
         renderItem={({ item }) => (
@@ -28,9 +41,9 @@ export default function ListPage({ navigation }) {
             <Text
               style={{
                 padding: 16,
-                fontSize: 20,
-                backgroundColor: "aqua",
-                margin: 2,
+                fontSize: 16,
+                backgroundColor: "#ffcbd1",
+                margin: 5,
               }}
             >
               {item.nameFullAndMeasurement}
@@ -148,8 +161,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // alignItems: "center",
     justifyContent: "center",
-    // paddingTop: 48,
+  },
+  button: {
+    width: 160,
+    height: 50,
+    marginHorizontal: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 3,
+    borderRadius: 18,
+    backgroundColor: "#D21F3C",
+    margin: 10,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
